@@ -17,27 +17,43 @@
 package controllers
 
 import base.SpecBase
-import controllers.actions.{DataRequiredActionImpl, FakeDataRetrievalActionEmpty, FakeIdentifierAction}
+import controllers.actions._
 import play.api.test.Helpers._
 import views.html.CheckYourAnswersView
 
 class CheckYourAnswersControllerSpec extends SpecBase {
 
-  object TestCheckYourAnswersController extends CheckYourAnswersController(
+  val view = injector.instanceOf[CheckYourAnswersView]
+
+  def controller(dataRetrieval: DataRetrievalAction = FakeDataRetrievalActionNone) = new CheckYourAnswersController(
     messagesApi = messagesApi,
     identify = FakeIdentifierAction,
-    getData = FakeDataRetrievalActionEmpty,
+    getData = dataRetrieval,
     requireData = new DataRequiredActionImpl,
     controllerComponents = messagesControllerComponents,
-    view = injector.instanceOf[CheckYourAnswersView]
+    view = view
   )
 
-  "Check Your Answers Controller" must {
+  "Check Your Answers Controller" when {
 
-    "work" in {
+    "given empty answers" must {
 
-      val result = TestCheckYourAnswersController.onPageLoad()(fakeRequest)
-      status(result) mustEqual OK
+      "return a OK (200)" in {
+
+        val result = controller(FakeDataRetrievalActionEmptyAnswers).onPageLoad()(fakeRequest)
+
+        status(result) mustEqual OK
+      }
+    }
+
+    "given None" must {
+
+      "return a SEE_OTHER (303)" in {
+
+        val result = controller().onPageLoad()(fakeRequest)
+
+        status(result) mustEqual SEE_OTHER
+      }
     }
   }
 }

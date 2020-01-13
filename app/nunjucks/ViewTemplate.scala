@@ -30,3 +30,5 @@ object AgentActingOnBehalfOfCompanyTemplate extends WithName("agentActingOnBehal
 object AgentNameTemplate extends WithName("agentName.njk") with ViewTemplate
 object InfrastructureCompanyElectionTemplate extends WithName("infrastructureCompanyElection.njk") with ViewTemplate
 object FullOrAbbreviatedReturnTemplate extends WithName("fullOrAbbreviatedReturn.njk") with ViewTemplate
+object GroupSubjectToReactivationsTemplate extends WithName("groupSubjectToReactivations.njk") with ViewTemplate
+object RevisingReturnTemplate extends WithName("revisingReturn.njk") with ViewTemplate

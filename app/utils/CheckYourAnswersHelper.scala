@@ -40,6 +40,10 @@ class CheckYourAnswersHelper(userAnswers: UserAnswers)(implicit messages: Messag
 
   def agentName: Option[SummaryListRow] = answer(AgentNamePage, routes.AgentNameController.onPageLoad(CheckMode))
 
+  def revisingReturn: Option[SummaryListRow] = answer(RevisingReturnPage, routes.RevisingReturnController.onPageLoad(CheckMode))
+
+  def groupSubjectToReactivations: Option[SummaryListRow] = answer(GroupSubjectToReactivationsPage, routes.GroupSubjectToReactivationsController.onPageLoad(CheckMode))
+
   def agentActingOnBehalfOfCompany: Option[SummaryListRow] = answer(AgentActingOnBehalfOfCompanyPage, routes.AgentActingOnBehalfOfCompanyController.onPageLoad(CheckMode))
 
   def infrastructureCompanyElection: Option[SummaryListRow] = answer(InfrastructureCompanyElectionPage, routes.InfrastructureCompanyElectionController.onPageLoad(CheckMode))

@@ -85,8 +85,13 @@ lazy val root = (project in file("."))
 
 lazy val testSettings: Seq[Def.Setting[_]] = Seq(
   fork        := true,
+  testForkedParallel := true,
   javaOptions ++= Seq(
     "-Dconfig.resource=test.application.conf",
-    "-Dlogger.resource=logback-test.xml"
+    "-Dlogger.resource=logback-test.xml",
+    "-XX:+CMSClassUnloadingEnabled",
+    "-Xmx4G", 
+    "-Xms2G"
   )
 )
+
